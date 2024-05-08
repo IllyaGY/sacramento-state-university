@@ -1,0 +1,11 @@
+Bf program reads two chars from stdin; adds their ASCII values; and
+prints the char that results
+
+,               # read first byte into data(0)
+>,              # read second byte into data(1)
+[               # while data(1) nonzero
+    <+          # increment data(0)
+    >-          # decrement data(1)
+]
+<.              # print data(0)
+>++++++++++.    # increment data(1) from 0 to 10 (ASCII newline) and print it
