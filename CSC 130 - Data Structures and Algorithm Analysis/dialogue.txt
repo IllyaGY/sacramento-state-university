@@ -1,0 +1,5 @@
+Line4=I'm ready for an adventure.
+Line5=Let's explore!
+Line1=Hello, I'm PlayerOne.
+Line2=Nice to meet you!
+Line3=What a beautiful day.

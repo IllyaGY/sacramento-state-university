@@ -1,0 +1,5 @@
+Konan=Hi, I'm Konan
+Konan=Let me show you how I walk
+Konan=Did you see those steps?
+Konan=Catch me if you can!
+Konan=Have a good day!
