@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>General Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function verifyCode() {
+            var userCode = prompt("Enter the verification code sent to your phone:");
+            if (userCode === null) {
+                // User clicked "Cancel"
+                alert("Verification was canceled.");
+                window.location.href = '/';  
+            } else if (userCode.trim() === "") {
+                 // empty
+                alert("You must enter a verification code.");
+                window.location.href = '/';  // Redirect back to the index page
+            } else {
+                //  verify the code
+                fetch('/verify_code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: userCode }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = data.redirect_url;  // Redirect to the user's page
+                    } else {
+                        window.location.href = '/'
+                        alert("Incorrect code, please try again.");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>General Overview</h1>
+        <h1>All Users</h1>
+        <ul>
+            {% for user in users %}
+                <li>ID: {{user.key}}. {{ user.name }} (Role ID: {{ user.role_id }})</li>
+            {% endfor %}
+        </ul>
+
+        <h1>All Files</h1>
+        <h3>(To access files, log into an account)</h3>
+        <ul>
+            {% for file in files %}
+                <li>{{ file.filename }} (Owner's ID: {{ file.owner_id }})</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('create_user') }}">Create User</a>
+
+        <form action="/user" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+
+            <div id="input-container" style="display: none;">
+                <label for="dynamic-input">Enter something:</label>
+                <input type="text" id="dynamic-input" name="dynamic-input">
+            </div>
+            
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    {% if show_verification %}
+    <script>
+        window.onload = function() {
+            verifyCode();
+        };
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{username}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+
+    <div class="container">
+    <h1>Welcome  {{ username }}</h1>
+    <h2>Your Files</h2>
+    <ul>
+      {% for file in files %}
+      <li>
+        <a href="{{ url_for('delete_file', filename=file.filename) }}" class="delete-icon">&times;</a>
+        <a href="{{ url_for('view_file', filename=file.filename, user_id=key) }}">{{ file.filename }} (Owner ID: {{ file.owner_id }})</a>
+      </li>
+      
+      {% endfor %}
+    </ul>
+    <h2>Available to View</h2>
+    <ul>
+      {% for file in files_viewable %}
+      <li>
+        <a href="{{ url_for('view_file', filename=file.filename,user_id=key) }}">{{ file.filename }} (Owner ID: {{ file.owner_id }})</a>
+      </li>
+      
+      {% endfor %}
+    </ul>
+    <form action="{{ url_for('create_file') }}" method = get>
+      <input type="hidden" name="owner_id" value="{{ key }}">
+      <input type="hidden" name="owner_role_id" value="{{ role_id }}">  
+      <input type="submit" value="Create File">
+    </form>
+    <a href="/">Back</a>
+    </div>
+  </body>
+</html>

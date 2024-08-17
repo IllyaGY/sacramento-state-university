@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h1>Create User</h1>
+    <form action="/create_user" method="post">
+        Name: <input type="text" name="name"><br>
+        Password: <input type="password" name="password"><br>
+        Phone: <input type="tel" name="phone" placeholder="123-456-7890"><br>
+        Role: 
+        <select name="role_name">
+            <option value="manager">Manager</option>
+            <option value="human resources">Human Resources</option>
+            <option value="engineer">Engineer</option>
+        </select><br>
+        <input type="submit" value="Create User">
+    </form>
+    <a href="/">Back</a>
+    </div>
+</body>
+</html>

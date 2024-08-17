@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class = "container">
+    <h1>Create File</h1>
+    <form action="/create_file" method="post">
+        Filename: <input type="text" name="filename"><br>
+        {% if owner_role_id == 2 %}
+            Viewable by Manager: <input type="checkbox" name="view_by_manager"><br>
+        {% endif %}
+        {% if owner_role_id == 1 %}
+            Viewable by User ID: <input type="text" name="view_by_user"><br>
+        {% endif %}
+        <input type="submit" value="Create File">
+        <input type="hidden" name="owner_id" value="{{ owner_id }}">
+        <input type="hidden" name="owner_role_id" value="{{ owner_role_id }}">  
+    </form>
+    <a href="/">Back</a>
+</div>
+</body>
+</html>
