@@ -1,5 +1,5 @@
-//Illya Gordyy CSC140 Spring 2024 
-
+// © 2024 IllyaGY
+// Licensed under the MIT License. See the LICENSE file for details.
 
 #include <iostream>
 #include <fstream>
