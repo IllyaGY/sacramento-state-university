@@ -1,4 +1,6 @@
-// C++ code template for Algorithms Assignment 4
+// © 2024 IllyaGY
+// Licensed under the MIT License. See the LICENSE file for details.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
